@@ -3,6 +3,7 @@ package com.electricity.nintriva.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,13 +23,34 @@ public class BillDetails implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int billNumber;
 	
+	@Column
     private int consumerNumber;
 	
+	@Column
 	private int consumedUnits;
 	
+	@Column
 	private int billAmount;
 	
+	@Column
 	private LocalDate billDate;
+	
+	@Column
+	private int currentReading;
+	
+	public BillDetails(int billNumber, int consumerNumber, int consumedUnits, int billAmount, LocalDate billDate) {
+		super();
+		this.billNumber = billNumber;
+		this.consumerNumber = consumerNumber;
+		this.consumedUnits = consumedUnits;
+		this.billAmount = billAmount;
+		this.billDate = billDate;
+	}
+
+	public BillDetails() {
+		super();
+	}
+
 
 	public int getBillNumber() {
 		return billNumber;
@@ -36,6 +58,15 @@ public class BillDetails implements Serializable {
 
 	public void setBillNumber(int billNumber) {
 		this.billNumber = billNumber;
+	}
+	
+
+	public int getCurrentReading() {
+		return currentReading;
+	}
+
+	public void setCurrentReading(int currentReading) {
+		this.currentReading = currentReading;
 	}
 
 	public int getConsumerNumber() {
@@ -68,19 +99,6 @@ public class BillDetails implements Serializable {
 
 	public void setBillDate(LocalDate billDate) {
 		this.billDate = billDate;
-	}
-
-	public BillDetails(int billNumber, int consumerNumber, int consumedUnits, int billAmount, LocalDate billDate) {
-		super();
-		this.billNumber = billNumber;
-		this.consumerNumber = consumerNumber;
-		this.consumedUnits = consumedUnits;
-		this.billAmount = billAmount;
-		this.billDate = billDate;
-	}
-
-	public BillDetails() {
-		super();
 	}
 	
 	

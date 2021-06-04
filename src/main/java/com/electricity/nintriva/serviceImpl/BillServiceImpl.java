@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
 import com.electricity.nintriva.constants.AppConstants;
@@ -44,8 +45,16 @@ public class BillServiceImpl implements BillService {
 			throw new RuntimeException("Bill Already Submitted");
 		}
 		int billAmount = 0;
+		int consumedUnits = 0;
+		BillDetails billdetailList = billRepository.findPreviousBill(billInputDetails.getConsumerNumber());
+		if (ObjectUtils.isEmpty(billdetailList)) {
+			consumedUnits = billInputDetails.getCurrentReading();
+
+		} else {
+			consumedUnits = billInputDetails.getCurrentReading()-billdetailList.getCurrentReading();
+		}
+		billInputDetails.setConsumedUnits(consumedUnits);
 		List<Integer> unitList = new ArrayList<Integer>();
-		
 		List<PriceSlabDetails> detailList = (List<PriceSlabDetails>) priceSlabRepository.findAll();
 
 		detailList.forEach(item -> unitList.add(item.getUnitSlab()));
@@ -57,7 +66,7 @@ public class BillServiceImpl implements BillService {
 			billAmount = finalPriceSlab.get().getPerUnitPrice() * billInputDetails.getConsumedUnits();
 			billInputDetails.setBillAmount(billAmount);
 			billInputDetails.setBillDate(LocalDate.now());
-			//billInputDetails.setConsumedUnits(consumedUnits);
+			// billInputDetails.setConsumedUnits(consumedUnits);
 			billRepository.save(billInputDetails);
 			return AppConstants.BILL_SUBMITTED;
 
@@ -86,7 +95,7 @@ public class BillServiceImpl implements BillService {
 	}
 
 	public BillDetails generateBill(String consumerNumber, String date) {
-          
+
 		return retrieveBill(consumerNumber, date);
 	}
 
