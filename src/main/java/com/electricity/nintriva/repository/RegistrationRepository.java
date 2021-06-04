@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.electricity.nintriva.entity.RegistrationEntity;
 @Repository
 public interface RegistrationRepository extends CrudRepository<RegistrationEntity,Integer>{
-
+   public RegistrationEntity findByConsumerNumber(int consumerNumber);
 }

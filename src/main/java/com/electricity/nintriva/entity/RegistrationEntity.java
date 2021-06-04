@@ -24,13 +24,13 @@ public class RegistrationEntity implements Serializable {
 	
 
 	
-	@Column
+	@Column(nullable=false)
 	public String firstName;
-	@Column
+	@Column(nullable=false)
 	public String lastName;
 	
-	@Column
-	public String consumer_Number;
+	@Column(nullable=false,unique = true,length= 15)
+	public int consumerNumber;
 	
 	@Column
 	public String publicUserId;
@@ -54,12 +54,7 @@ public class RegistrationEntity implements Serializable {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public String getConsumer_Number() {
-		return consumer_Number;
-	}
-	public void setConsumer_Number(String consumer_Number) {
-		this.consumer_Number = consumer_Number;
-	}
+	
 
 	public String getEncryptedPassword() {
 		return encryptedPassword;
@@ -73,6 +68,14 @@ public class RegistrationEntity implements Serializable {
 	public void setPublicUserId(String publicUserId) {
 		this.publicUserId = publicUserId;
 	}
+	public int getConsumerNumber() {
+		return consumerNumber;
+	}
+	public void setConsumerNumber(int consumerNumber) {
+		this.consumerNumber = consumerNumber;
+	}
+
+	
 	
 	
 	

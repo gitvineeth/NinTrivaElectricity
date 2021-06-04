@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="bill_details")
-public class BillInputDetails implements Serializable {
+public class BillDetails implements Serializable {
 	
 	/**
 	 * 
@@ -70,7 +70,7 @@ public class BillInputDetails implements Serializable {
 		this.billDate = billDate;
 	}
 
-	public BillInputDetails(int billNumber, int consumerNumber, int consumedUnits, int billAmount, LocalDate billDate) {
+	public BillDetails(int billNumber, int consumerNumber, int consumedUnits, int billAmount, LocalDate billDate) {
 		super();
 		this.billNumber = billNumber;
 		this.consumerNumber = consumerNumber;
@@ -79,7 +79,7 @@ public class BillInputDetails implements Serializable {
 		this.billDate = billDate;
 	}
 
-	public BillInputDetails() {
+	public BillDetails() {
 		super();
 	}
 	

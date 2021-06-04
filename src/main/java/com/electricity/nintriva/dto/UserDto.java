@@ -12,7 +12,7 @@ public class UserDto implements Serializable {
 
 	public String firstName;
 	public String lastName;
-	public String consumer_Number;
+	public int consumerNumber;
 	
 	public String publicUserId;
 	public String encryptedPassword;
@@ -48,13 +48,14 @@ public class UserDto implements Serializable {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public String getConsumer_Number() {
-		return consumer_Number;
-	}
-	public void setConsumer_Number(String consumer_Number) {
-		this.consumer_Number = consumer_Number;
-	}
 
+
+	public int getConsumerNumber() {
+		return consumerNumber;
+	}
+	public void setConsumerNumber(int consumerNumber) {
+		this.consumerNumber = consumerNumber;
+	}
 	public String getEncryptedPassword() {
 		return encryptedPassword;
 	}

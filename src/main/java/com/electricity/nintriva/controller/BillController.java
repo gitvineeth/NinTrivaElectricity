@@ -1,6 +1,8 @@
 package com.electricity.nintriva.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.electricity.nintriva.model.BillInputDetails;
+import com.electricity.nintriva.model.BillDetails;
 import com.electricity.nintriva.service.BillService;
 
 
@@ -20,17 +22,19 @@ public class BillController {
 	BillService billService;
 	
 	@PostMapping(value="/submit")
-	public void submitBill(@RequestBody BillInputDetails billInputDetails) { 
+	public ResponseEntity<String> submitBill(@RequestBody BillDetails billInputDetails) { 
 		
-	  billService.submitBill(billInputDetails);
+	  String response = billService.submitBill(billInputDetails);
+	  return new ResponseEntity<String>(response,HttpStatus.OK);
 	}
 	
 	
-	@GetMapping("/get/{consumerNumber}")
-	public int getUserBill(@PathVariable String consumerNumber) { 
+	@GetMapping("/get/{consumerNumber}/{date}")
+	public ResponseEntity<BillDetails> getUserBill(@PathVariable String consumerNumber, @PathVariable String date) { 
 		
-		int consumerNo = Integer.parseInt(consumerNumber);
-		return consumerNo;
+		BillDetails response = billService.generateBill(consumerNumber, date);
+		return new ResponseEntity<BillDetails>(response,HttpStatus.OK);
+	  
 	}
 	
 	

@@ -20,7 +20,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	Utils utils;
 	
 	@Override
-	public UserDto RegisterUser(UserDto userDto) {
+	public UserDto registerUser(UserDto userDto) {
 		UserDto backtoUserDto=new UserDto();
 		RegistrationEntity regEntity=new RegistrationEntity();
 		

@@ -4,7 +4,7 @@ import com.electricity.nintriva.dto.UserDto;
 
 public interface RegistrationService {
 	
-	public UserDto RegisterUser(UserDto userDto);
+	public UserDto registerUser(UserDto userDto);
 	
 	
 	
