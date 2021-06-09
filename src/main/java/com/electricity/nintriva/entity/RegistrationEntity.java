@@ -39,6 +39,9 @@ public class RegistrationEntity implements Serializable {
 	public int getUserId() {
 		return userId;
 	}
+
+	@Column
+	public String email;
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
@@ -75,10 +78,11 @@ public class RegistrationEntity implements Serializable {
 		this.consumerNumber = consumerNumber;
 	}
 
-	
-	
-	
-	
-	
-	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 }

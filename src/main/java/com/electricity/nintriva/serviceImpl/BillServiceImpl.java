@@ -108,7 +108,7 @@ public class BillServiceImpl implements BillService {
 	private BillDetails retrieveBill(String consumerNumber, String date) {
 
 		if (ObjectUtils.isEmpty(checkIfConsumerNoExists(Integer.parseInt(consumerNumber)))) {
-			throw new RuntimeException("invalid user");
+			throw new RuntimeException("invalid user  "+consumerNumber);
 		}
 		BillDetails billDetails = new BillDetails();
 		String[] strArray = date.split("-");
